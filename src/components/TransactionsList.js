@@ -6,9 +6,14 @@ const TransactionsList = ({ transactions, user }) => {
   return (
     <div>
       <h2>{user.id ? user.id : "User"}'s Transactions</h2>
-      {transactions.map(t => (
-        <TransactionCard transaction={t} />
-      ))}
+      {transactions.map(t => {
+        console.log(t, user);
+        return (
+          (t.recipient === user.id || t.sender === user.id) && (
+            <TransactionCard transaction={t} />
+          )
+        );
+      })}
     </div>
   );
 };
