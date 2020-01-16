@@ -1,17 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
-const UserForm = ({
-  user,
-  setUser,
-  setBlocks,
-  blocks,
-  transactions,
-  setTransactions
-}) => {
-  console.log("blocks", blocks);
-  console.log("transactions", transactions);
-
+const UserForm = ({ user, setUser, transactions, setTransactions }) => {
   function handleChange(e) {
     const updatedUser = {
       ...user,
