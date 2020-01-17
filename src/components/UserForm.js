@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 const UserForm = ({ user, setUser, setTotal, setTransactions }) => {
   function handleChange(e) {
@@ -40,7 +41,7 @@ const UserForm = ({ user, setUser, setTotal, setTransactions }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <input
         type="text"
         name="id"
@@ -50,8 +51,23 @@ const UserForm = ({ user, setUser, setTotal, setTransactions }) => {
         placeholder="id"
       />
       <button>Submit</button>
-    </form>
+    </Form>
   );
 };
 
 export default UserForm;
+
+const Form = styled.form`
+  input {
+    outline: none;
+    width: 20%;
+    height: 3rem;
+  }
+
+  button {
+    outline: none;
+    height: 3rem;
+  }
+
+  margin: 20px;
+`;
