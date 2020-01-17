@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 
-const UserForm = ({ user, setUser, transactions, setTransactions }) => {
+const UserForm = ({ user, setUser, setTotal, setTransactions }) => {
   function handleChange(e) {
     const updatedUser = {
       ...user,
@@ -17,9 +17,23 @@ const UserForm = ({ user, setUser, transactions, setTransactions }) => {
       .then(res => {
         setTransactions([
           ...res.data.chain.flatMap(block => {
-            return block.transactions;
+            return block.transactions.filter(
+              t => t.recipient === user.id || t.sender === user.id
+            );
           })
         ]);
+
+        let wallet = [
+          ...res.data.chain.flatMap(block => {
+            return block.transactions.filter(
+              t => t.recipient === user.id || t.sender === user.id
+            );
+          })
+        ].map(t => (t.recipient === user.id ? t.amount : t.amount * -1));
+
+        setTotal(wallet.reduce((acc, curr) => acc + curr));
+
+        console.log("wallet", wallet);
         console.log("data", res.data);
       })
       .catch(err => console.log("Error:", err));
