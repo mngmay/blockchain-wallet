@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TransactionCard from "./TransactionCard";
 
 const TransactionsList = ({ transactions, user }) => {
@@ -6,7 +6,7 @@ const TransactionsList = ({ transactions, user }) => {
     <div>
       <h2>{user.id ? user.id : "User"}'s Transactions</h2>
       {transactions.map(t => {
-        return <TransactionCard transaction={t} />;
+        return <TransactionCard transaction={t} user={user} />;
       })}
     </div>
   );

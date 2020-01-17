@@ -41,13 +41,13 @@ const UserForm = ({ user, setUser, setTotal, setTransactions }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="User">User:</label>
       <input
         type="text"
         name="id"
         required
         value={user.id}
         onChange={handleChange}
+        placeholder="id"
       />
       <button>Submit</button>
     </form>
